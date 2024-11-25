@@ -1,1 +1,2 @@
-scripts
+__pycache__
+wisteria_train.sh
