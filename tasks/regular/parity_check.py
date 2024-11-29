@@ -21,9 +21,10 @@ class ParityCheck(task.GeneralizationTask):
         """Returns a batch of strings and the expected class."""
         strings = t.randint(low=0, high=2, size=(batch_size, length))
         n_b = t.sum(strings, axis=1) % 2
-        n_b = F.one_hot(n_b, num_classes=2)
-        one_hot_strings = F.one_hot(strings, num_classes=2)
-        return {"input": one_hot_strings, "output": n_b}
+        # n_b = F.one_hot(n_b, num_classes=2)
+        # one_hot_strings = F.one_hot(strings, num_classes=2)
+        # return {"input": one_hot_strings, "output": n_b}
+        return {"input": strings, "output": n_b}
 
     @property
     def input_size(self) -> int:

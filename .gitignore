@@ -1,2 +1,4 @@
 __pycache__
-wisteria_train.sh
+wisteria_train.sh*
+wandb/
+.d*

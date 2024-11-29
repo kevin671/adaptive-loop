@@ -15,12 +15,16 @@ class GeneralizationTask(abc.ABC):
 
     def pointwise_loss_fn(self, output: t.Tensor, target: t.Tensor) -> t.Tensor:
         """Returns the pointwise loss between an output and a target."""
-        loss = -target * F.log_softmax(output, dim=-1)
+        # loss = -target * F.log_softmax(output, dim=-1)
+        loss = F.cross_entropy(output, target)
         return loss
 
     def accuracy_fn(self, output: t.Tensor, target: t.Tensor) -> t.Tensor:
         """Returns the accuracy between an output and a target."""
-        return t.argmax(output, axis=-1) == t.argmax(target, axis=-1)
+        # return t.argmax(output, axis=-1) == t.argmax(target, axis=-1)
+        # output: [batch_size, output_size]
+        # target: [batch_size]
+        return t.argmax(output, axis=-1) == target
 
     def accuracy_mask(self, target: t.Tensor) -> t.Tensor:
         """Returns a mask to compute the accuracies, to remove the superfluous ones."""
